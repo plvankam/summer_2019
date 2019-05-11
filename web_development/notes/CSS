@@ -1,0 +1,54 @@
+## CSS Language Syntax
+
+The CSS Syntax has the following format:
+
+```css
+selector {
+  property: value;
+  property: value;
+}
+selector {
+  property: value;
+  property: value;
+}
+```
+
+CSS can be included in a document one of three ways.
+
+1. **In-line:** Right in the tag you want styled.
+
+   ```html
+   <h1 style="text-align:center;font-size: 14px;">This is a heading.</h1>
+   ```
+
+2. **Internal:** In the `head` portion of the document.
+
+   ```html
+   <head>
+     <style>
+     h1 {
+         text-align: center;
+         font-size: 14px;
+     }
+     </style>
+   </head>
+   ```
+
+3. **External:** In a separate file.
+
+   The best way is to link to a separate style sheet. The example below links will load a style sheet named `stylesheet.css` that is in the `css` directory.
+
+   ```html
+   <head>
+     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+   </head>
+   ```
+
+   Then your `stylesheet.css` file would look like this:
+
+   ```css
+   h1 {
+       text-align: center;
+       font-size: 14px;
+   }
+   ```
