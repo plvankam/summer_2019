@@ -143,7 +143,7 @@ We can specify not only the link text, but where the link goes:
 
 
 
-```
+```html
 !-- Basic 01_HTML document. Remove comments for your own document. -->
 
 <!-- This says the document is an HTML5 document. -->
@@ -221,7 +221,7 @@ The [CSE HTML Validator](http://www.htmlvalidator.com/) is great for HTML work. 
 
 ### HTML Sample Document
 
-```
+```html
 <!DOCTYPE html>
 <!-- Sample document by Paul Craven
      This is an 01_HTML comment.
