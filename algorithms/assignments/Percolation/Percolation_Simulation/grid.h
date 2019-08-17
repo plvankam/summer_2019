@@ -8,9 +8,9 @@ class Grid
 {
 private:
     std::vector<Node*> Node_Vector;
-    bool percolates;
-    Node* top_root;
-    Node* btm_root;
+    bool               percolates;
+    Node*              top_root;
+    Node*              btm_root;
 public:
     // Grid();
     Grid(unsigned int N);
