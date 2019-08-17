@@ -48,8 +48,14 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../Percolation_Simulation/main.cpp 
-OBJECTS       = main.o
+SOURCES       = ../Percolation_Simulation/main.cpp \
+		../Percolation_Simulation/simulation.cpp \
+		../Percolation_Simulation/node.cpp \
+		../Percolation_Simulation/grid.cpp 
+OBJECTS       = main.o \
+		simulation.o \
+		node.o \
+		grid.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -104,7 +110,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../Percolation_Simulation/Percolation_Simulation.pro  ../Percolation_Simulation/main.cpp
+		../Percolation_Simulation/Percolation_Simulation.pro ../Percolation_Simulation/simulation.h \
+		../Percolation_Simulation/node.h \
+		../Percolation_Simulation/grid.h ../Percolation_Simulation/main.cpp \
+		../Percolation_Simulation/simulation.cpp \
+		../Percolation_Simulation/node.cpp \
+		../Percolation_Simulation/grid.cpp
 QMAKE_TARGET  = Percolation_Simulation
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Percolation_Simulation
@@ -262,7 +273,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Percolation_Simulation/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Percolation_Simulation/simulation.h ../Percolation_Simulation/node.h ../Percolation_Simulation/grid.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Percolation_Simulation/main.cpp ../Percolation_Simulation/simulation.cpp ../Percolation_Simulation/node.cpp ../Percolation_Simulation/grid.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -301,6 +313,16 @@ compiler_clean:
 
 main.o: ../Percolation_Simulation/main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Percolation_Simulation/main.cpp
+
+simulation.o: ../Percolation_Simulation/simulation.cpp ../Percolation_Simulation/simulation.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o simulation.o ../Percolation_Simulation/simulation.cpp
+
+node.o: ../Percolation_Simulation/node.cpp ../Percolation_Simulation/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../Percolation_Simulation/node.cpp
+
+grid.o: ../Percolation_Simulation/grid.cpp ../Percolation_Simulation/grid.h \
+		../Percolation_Simulation/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o grid.o ../Percolation_Simulation/grid.cpp
 
 ####### Install
 

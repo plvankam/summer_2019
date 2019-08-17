@@ -1,5 +1,5 @@
 #include <QCoreApplication>
-#include<iostream>
+#include <iostream>
 
 void monte_carlo_loop(int x)
 {
