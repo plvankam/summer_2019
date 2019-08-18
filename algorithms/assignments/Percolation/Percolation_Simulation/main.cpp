@@ -8,6 +8,7 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
     // create grid
     Grid* grid = new Grid(4);
 

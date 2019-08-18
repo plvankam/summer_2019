@@ -3,7 +3,7 @@ QT -= gui
 
 TARGET = Percolation_Simulation
 CONFIG += console
-CONFIG += g++11
+CONFIG += c++11
 CONFIG -= app_bundle
 
 TEMPLATE = app

@@ -1,19 +1,22 @@
 #include "grid.h"
 #include "node.h"
+#include<memory>
+#include<algorithm>
 
 Grid::Grid(unsigned int N)
 {
     percolates = false;
-    btm_root = new Node(N + 1);
-    top_root = new Node(N);
+    top_root = std::make_shared<Node>(N);
+    btm_root = std::make_shared<Node>(N + 1);
     for(unsigned int i = 0; i < N; ++i)
-        {Node_Vector.push_back(new Node(i));}
+        {Node_Vector.push_back(std::make_shared<Node>(i));}
+    for(unsigned int i = 0; i < N; ++i)
+    {
+        Node_Vector[i]->map_neighbors(N,i,Node_Vector);
+    }
 }
 
 Grid::~Grid()
 {
-    delete btm_root;
-    delete top_root;
-    for(Node* node : Node_Vector) delete node;
 }
 

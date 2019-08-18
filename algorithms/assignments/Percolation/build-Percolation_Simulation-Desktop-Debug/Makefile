@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -m64 -pipe -g -std=c++0x -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I../Percolation_Simulation -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -101,6 +101,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -191,6 +192,7 @@ Makefile: ../Percolation_Simulation/Percolation_Simulation.pro /usr/lib/x86_64-l
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -248,6 +250,7 @@ Makefile: ../Percolation_Simulation/Percolation_Simulation.pro /usr/lib/x86_64-l
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf:
+/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf:
@@ -311,13 +314,15 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../Percolation_Simulation/main.cpp 
+main.o: ../Percolation_Simulation/main.cpp ../Percolation_Simulation/grid.h \
+		../Percolation_Simulation/node.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Percolation_Simulation/main.cpp
 
 simulation.o: ../Percolation_Simulation/simulation.cpp ../Percolation_Simulation/simulation.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o simulation.o ../Percolation_Simulation/simulation.cpp
 
-node.o: ../Percolation_Simulation/node.cpp ../Percolation_Simulation/node.h
+node.o: ../Percolation_Simulation/node.cpp ../Percolation_Simulation/node.h \
+		../Percolation_Simulation/grid.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../Percolation_Simulation/node.cpp
 
 grid.o: ../Percolation_Simulation/grid.cpp ../Percolation_Simulation/grid.h \
